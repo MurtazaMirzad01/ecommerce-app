@@ -1,2 +1,6 @@
 @import "tailwindcss";
 @import "tailwindcss";
+
+a.active hr {
+    display: block;
+}
