@@ -1,12 +1,19 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/assets';
+import Title from '../components/Title';
+import ProductItem from '../components/ProductItem';
 
 const Collection = () => {
 
   const {products} = useContext(ShopContext);
   const [showFilter, setShowFilter] = useState(false);
-  
+  const [filterProducts, setFilterProducts] = useState([]);
+
+  useEffect(() => {
+    setFilterProducts(products);
+  }, []);
+
   return (
     <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t'>
 
@@ -51,6 +58,27 @@ const Collection = () => {
       </div>
       </div>
     </div>
+
+    {/* Right Side */}
+      <div className='flex-1'>
+        <div className='flex justify-between text-base sm:text-2xl mb-4'>
+          <Title text1={'ALL'} text2={'COLLECTIONS'} />
+          {/* Product Sort */}
+          <select className='border-2 border-gray-300 px-2 text-sm'>
+            <option value="relavent">Sort by: Relavent</option>
+            <option value="low-higt">Sort by: Low to High</option>
+            <option value="high-low">Sort by: High to Low</option>
+          </select>
+        </div>
+        {/* Map Products */}
+        <div className='grid grid-cols-2 md:grid-cols-4 lg-cols-5 gap-4 gap-y-6'>
+        {
+          filterProducts.map((item,index) => (
+            <ProductItem key={index} id={item._id} name={item.name} image={item.image} price={item.price} />
+          ))
+        }
+        </div>
+      </div>
     </div>
   )
 }
