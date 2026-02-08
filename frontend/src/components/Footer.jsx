@@ -32,7 +32,7 @@ const Footer = () => {
         </div>
 
         <div>
-            <hr />
+            <div className='border border-gray-300'></div>
             <p className='py-5 text-sm text-center'>Copyright © 2026 Ecommerce. All rights reserved.</p>
         </div>
     </div>

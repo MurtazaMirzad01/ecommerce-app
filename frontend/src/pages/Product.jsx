@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/assets';
+import RelatedProducts from '../components/RelatedProducts';
 
 const Product = () => {
 
@@ -25,7 +26,7 @@ const Product = () => {
   }, [productId])
 
   return productData ? (
-    <div className='border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100'>
+    <div className='border-t-2 border-gray-300 pt-10 transition-opacity ease-in duration-500 opacity-100'>
       {/* Product Data */}
       <div className='flex gap-12 sm:gap-12 flex-col sm:flex-row'>
         {/* Product Images */}
@@ -94,7 +95,9 @@ const Product = () => {
         </div>
       </div>
       {/* Display related products */}
-      
+
+      <RelatedProducts category={productData.category} subCategory={productData.subCategory} />
+
     </div>
   ) : <div className='opacity-0'></div>
 }
